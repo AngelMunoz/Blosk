@@ -13,5 +13,5 @@ bls-start {
     backdrop-filter: blur(12px);
     background-color: var(--start-background-pref, rgba(74,74,74, 0.50));
     overflow-y: auto;
-    z-index: 1;
+    z-index: 3;
 }

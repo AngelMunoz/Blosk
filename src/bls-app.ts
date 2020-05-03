@@ -1,15 +1,10 @@
 import { computed } from 'aurelia'
 import { BlsAppStore } from "./stores/BlsAppStore";
-import { DialogClosingEvent } from './types';
+import { DialogClosingEvent, InstallProgramEvent } from './types';
 
 export class BlsApp {
 
-  constructor(private appstore: BlsAppStore) {
-
-    this.appstore.addStartGroups({ name: "Uncategorized", order: 0, programs: [] })
-    this.appstore.addStartGroups({ name: "Pending", order: 0, programs: [] })
-    this.appstore.addStartGroups({ name: "Alv", order: 0, programs: [] })
-  }
+  constructor(private appstore: BlsAppStore) { }
 
   @computed({ static: true })
   get isStartOpen() {
@@ -63,5 +58,10 @@ export class BlsApp {
   closeDialog(event: CustomEvent<DialogClosingEvent>) {
     const { title } = event.detail;
     this.appstore.removeDialog(title);
+  }
+
+  installProgram(event: CustomEvent<InstallProgramEvent>) {
+    const { program } = event.detail;
+    this.appstore.addProgram(program);
   }
 }

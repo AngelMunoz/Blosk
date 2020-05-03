@@ -6,6 +6,7 @@
 <import from="./components/bls-tile"></import>
 <import from="./components/bls-icon"></import>
 <import from="./components/bls-window"></import>
+<import from="./components/bls-install-dialog"></import>
 
 <template style="background-image: url('${backgroundUrl}')">
     <bls-start if.bind="isStartOpen">
@@ -15,7 +16,7 @@
         >
             <bls-tile
                 repeat.for="tile of group.programs"
-                tile.bind="tile.name"
+                title.bind="tile.name"
             ></bls-tile>
         </bls-tile-group>
     </bls-start>
@@ -42,4 +43,6 @@
     >
         ${dialog.content}
     </bls-dialog>
+    <bls-install-dialog install-program.delegate="installProgram($event)">
+    </bls-install-dialog>
 </template>

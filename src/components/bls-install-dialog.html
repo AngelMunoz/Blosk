@@ -1,0 +1,67 @@
+<bls-dialog title="Install a new Program">
+    <form submit.trigger="submit($event)">
+        <section>
+            <label for="name">
+                Program Name
+            </label>
+            <input
+                type="text"
+                name="name"
+                id="name"
+                value.bind="name"
+                required
+            >
+        </section>
+        <section>
+            <label for="url">
+                Url
+            </label>
+            <input
+                name="url"
+                id="url"
+                type="url"
+                value.bind="url"
+                required
+            >
+        </section>
+        <section>
+            <label for="programType">
+                Program Type
+            </label>
+            <select
+                value.bind="programType"
+                required
+            >
+                <option model.bind="null">Select an Option</option>
+                <option
+                    repeat.for="option of programTypes"
+                    model.bind="option.type"
+                >
+                    ${option.name}
+                </option>
+            </select>
+        </section>
+        <section if.bind="programType === 0">
+            <label for="tag">
+                Tag
+            </label>
+            <input
+                type="text"
+                value.bind="tag"
+                required.bind="programType === 0"
+            >
+        </section>
+        <section>
+            <label for="multiinstance">
+                Multi Instance
+            </label>
+            <input
+                type="checkbox"
+                checked.bind="multiInstance"
+            >
+        </section>
+        <section>
+            <Button type="submit">Install</Button>
+        </section>
+    </form>
+</bls-dialog>

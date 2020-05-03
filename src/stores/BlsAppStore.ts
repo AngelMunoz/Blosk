@@ -20,7 +20,7 @@ export class BlsAppStore implements Storable<AppState> {
         startGroups: [],
         programs: [],
         windows: [],
-        dialogs: [{ content: 'Alert1', title: 'Alv Todos', id: uuidv4() }, { content: 'This is some Content', title: 'Alert2', id: uuidv4() }],
+        dialogs: [],
         icons: [],
         isStartOpen: false,
         backgroundUrl: 'https://source.unsplash.com/daily?ar=2:1',
@@ -35,9 +35,11 @@ export class BlsAppStore implements Storable<AppState> {
     }
 
     saveState(state: Partial<AppState>) {
+        const _state = { ...this._state };
         for (const key of Object.keys(state)) {
-            this._state[key] = state[key];
+            _state[key] = state[key];
         }
+        this._state = { ..._state };
     }
 
     get state() {
@@ -91,8 +93,9 @@ export class BlsAppStore implements Storable<AppState> {
         if (this.programs.find(p => p.id === program.id)) return;
         const programs = [...this.programs, program];
         this.saveState({ programs });
-
+        this.rebuildGroups();
     }
+
     get startGroups() {
         const startGroups = this.state?.startGroups ?? [];
         return [...startGroups];
@@ -107,6 +110,19 @@ export class BlsAppStore implements Storable<AppState> {
     removeProgram(id: string) {
         const programs = this.programs.filter(p => p.id !== id);
         this.saveState({ programs });
+    }
+
+    rebuildGroups() {
+        const startGroups = this.startGroups.map(group => {
+            const programs = group.programs = this.programs.filter(p => {
+                if (group.name.toLowerCase() === "uncategorized") {
+                    return !p.category;
+                }
+                return p.category === group.name;
+            });
+            return { ...group, programs };
+        });
+        this.saveState({ startGroups });
     }
 
     get icons() {

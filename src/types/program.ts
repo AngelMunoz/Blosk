@@ -9,4 +9,6 @@ export interface Program {
     programType: ProgramType;
     url?: string;
     tag?: string;
+    category?: string;
+    name: string;
 }
