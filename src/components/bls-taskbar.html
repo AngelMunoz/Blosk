@@ -1,0 +1,23 @@
+<import from="./bls-taskbar.css"></import>
+<template part="bls-taskbar">
+    <section
+        part="start"
+        click.delegate="openStart($event)"
+    >
+        <button part="start-btn">
+            <img
+                src.bind="iconSrc"
+                part="start-icon"
+            >
+        </button>
+    </section>
+    <section
+        part="apps"
+        click.delegate="closeStart($event)"
+    >
+        <slot></slot>
+    </section>
+    <section part="tray">
+        <slot name="tray"></slot>
+    </section>
+</template>

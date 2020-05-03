@@ -1,0 +1,45 @@
+import { bindable, BindingMode } from 'aurelia';
+import { uuidv4 } from '../utils';
+import { DialogClosingEvent } from '../types';
+
+export class BlsDialog {
+
+    @bindable({ mode: BindingMode.toView })
+    title = '';
+
+    @bindable({ mode: BindingMode.toView })
+    identity = uuidv4();
+
+    private maxWidth: number;
+    private maxHeight: number;
+
+    constructor(private el: Element) { }
+
+    afterAttach() {
+        this.maxWidth = document.body.clientWidth;
+        this.maxHeight = document.querySelector('bls-desktop')?.clientHeight ?? 100;
+    }
+
+    close(event: MouseEvent) {
+        event.preventDefault();
+        event.stopPropagation();
+        const dispatch = new CustomEvent<DialogClosingEvent>('close-dialog', {
+            bubbles: true,
+            composed: true,
+            cancelable: true,
+            detail: { title: this.title, id: this.identity }
+        });
+        this.el.dispatchEvent(dispatch);
+    }
+
+    dragOver(event: DragEvent) {
+        event.preventDefault();
+        const target = event.target as HTMLElement;
+        const { pageX, pageY } = event;
+        const finalX = pageX > this.maxWidth ? this.maxWidth - 35 : pageX <= 25 ? 25 : pageX;
+        const finalY = pageY > this.maxHeight ? this.maxHeight - 35 : pageY <= 25 ? 25 : pageY;
+        target.style.left = `${finalX}px`;
+        target.style.top = `${finalY}px`;
+    }
+
+}

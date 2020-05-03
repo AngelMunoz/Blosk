@@ -1,0 +1,17 @@
+
+bls-start {
+    display: grid;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    height: 95vh;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4em;
+    backdrop-filter: blur(12px);
+    background-color: var(--start-background-pref, rgba(74,74,74, 0.50));
+    overflow-y: auto;
+    z-index: 1;
+}

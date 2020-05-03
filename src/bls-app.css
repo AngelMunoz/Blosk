@@ -1,0 +1,7 @@
+bls-app {
+    display: flex;
+    flex-direction: column;
+    background-repeat: var(--background-repeat-pref, repeat);
+    background-size: var(--background-size-pref, cover);
+}
+

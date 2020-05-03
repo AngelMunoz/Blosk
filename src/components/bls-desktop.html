@@ -1,0 +1,17 @@
+<import from="./bls-desktop.css"></import>
+<template class="bls-desktop">
+    <p
+        part="unsplash-notice"
+        if.bind="includeUnsplashNotice"
+    >
+        Background by <a
+            class="is-dark"
+            target="_blank"
+            rel="noreferrer noopener"
+            href="https://unsplash.com"
+        >
+            Unsplash
+        </a>
+    </p>
+    <slot></slot>
+</template>

@@ -1,0 +1,13 @@
+bls-desktop {
+    display: flex;
+    flex-direction: column;
+    flex: 2 0 auto;
+    height: 95vh;
+    z-index: 0;
+}
+
+bls-desktop::part(unsplash-notice) {
+    position: absolute;
+    bottom: 5vh;
+    right: 10px;
+}

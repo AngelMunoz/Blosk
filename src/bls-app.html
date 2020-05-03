@@ -1,0 +1,45 @@
+<import from="./bls-app.css"></import>
+<import from="./components/bls-desktop"></import>
+<import from="./components/bls-taskbar"></import>
+<import from="./components/bls-start"></import>
+<import from="./components/bls-tile-group"></import>
+<import from="./components/bls-tile"></import>
+<import from="./components/bls-icon"></import>
+<import from="./components/bls-window"></import>
+
+<template style="background-image: url('${backgroundUrl}')">
+    <bls-start if.bind="isStartOpen">
+        <bls-tile-group
+            repeat.for="group of startGroups"
+            title.bind="group.name"
+        >
+            <bls-tile
+                repeat.for="tile of group.programs"
+                tile.bind="tile.name"
+            ></bls-tile>
+        </bls-tile-group>
+    </bls-start>
+    <bls-desktop>
+        <bls-icon
+            repeat.for="icon of icons"
+            icon.bind="icon"
+        ></bls-icon>
+    </bls-desktop>
+    <bls-taskbar
+        open-start.delegate="openStart()"
+        close-start.delegate="closeStart()"
+    >
+        <bls-window
+            repeat.for="window of windows"
+            window.bind="window"
+        ></bls-window>
+    </bls-taskbar>
+    <bls-dialog
+        repeat.for="dialog of dialogs"
+        title.bind="dialog.title"
+        identity.bind="dialog.id"
+        close-dialog.delegate="closeDialog($event)"
+    >
+        ${dialog.content}
+    </bls-dialog>
+</template>

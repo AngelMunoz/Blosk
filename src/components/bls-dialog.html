@@ -1,0 +1,18 @@
+<import from="./bls-dialog.css"></import>
+<template
+    draggable="true"
+    dragend.delegate="dragOver($event)"
+>
+    <header part="header">
+        <h3>${title}</h3>
+        <button
+            part="closebtn"
+            click.delegate="close($event)"
+        >
+            ❌
+        </button>
+    </header>
+    <section part="content">
+        <slot></slot>
+    </section>
+</template>
