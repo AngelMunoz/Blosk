@@ -4,7 +4,9 @@ import { DialogClosingEvent, InstallProgramEvent } from './types';
 
 export class BlsApp {
 
-  constructor(private appstore: BlsAppStore) { }
+  constructor(private appstore: BlsAppStore) {
+    this.appstore.addStartGroups({ name: "Uncategorized", order: 0, programs: [] });
+  }
 
   @computed({ static: true })
   get isStartOpen() {
