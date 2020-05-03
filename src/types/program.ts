@@ -7,7 +7,7 @@ export interface Program {
     id: string
     multiInstance: boolean;
     programType: ProgramType;
-    url?: string;
+    url: string;
     tag?: string;
     category?: string;
     name: string;

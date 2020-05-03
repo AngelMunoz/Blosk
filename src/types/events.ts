@@ -8,3 +8,8 @@ export interface DialogClosingEvent {
 export interface InstallProgramEvent {
     program: Program;
 }
+
+export interface OpenProgramEvent {
+    programId: string;
+    name?: string;
+}

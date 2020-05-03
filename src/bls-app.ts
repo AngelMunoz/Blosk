@@ -1,10 +1,12 @@
 import { computed } from 'aurelia'
 import { BlsAppStore } from "./stores/BlsAppStore";
-import { DialogClosingEvent, InstallProgramEvent } from './types';
+import { DialogClosingEvent, InstallProgramEvent, OpenProgramEvent, AppWindow } from './types';
+import { uuidv4 } from './utils';
 
 export class BlsApp {
 
   constructor(private appstore: BlsAppStore) {
+    this.appstore.restoreFromStorage();
     this.appstore.addStartGroups({ name: "Uncategorized", order: 0, programs: [] });
   }
 
@@ -41,6 +43,20 @@ export class BlsApp {
   @computed({ static: true })
   get startGroups() {
     return this.appstore.startGroups;
+  }
+
+  openProgram(event: CustomEvent<OpenProgramEvent>) {
+    const { detail } = event;
+    const program = this.programs.find(p => p.id === detail.programId || p.name === detail.name);
+    const windows = this.windows.filter(w => w.program.id === program.id);
+    if (!program.multiInstance && windows.length === 1) return;
+    const window: AppWindow = {
+      id: uuidv4(),
+      program: program,
+      title: detail.name
+    }
+    this.appstore.addWindow(window);
+    this.appstore.isStartOpen = false;
   }
 
   openStart() {

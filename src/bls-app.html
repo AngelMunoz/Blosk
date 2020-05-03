@@ -17,6 +17,8 @@
             <bls-tile
                 repeat.for="tile of group.programs"
                 title.bind="tile.name"
+                program-id.bind="tile.id"
+                open-program.delegate="openProgram($event)"
             ></bls-tile>
         </bls-tile-group>
     </bls-start>
@@ -25,15 +27,16 @@
             repeat.for="icon of icons"
             icon.bind="icon"
         ></bls-icon>
+        <bls-window
+            repeat.for="window of windows"
+            window.bind="window"
+        ></bls-window>
     </bls-desktop>
     <bls-taskbar
         open-start.delegate="openStart()"
         close-start.delegate="closeStart()"
     >
-        <bls-window
-            repeat.for="window of windows"
-            window.bind="window"
-        ></bls-window>
+
     </bls-taskbar>
     <bls-dialog
         repeat.for="dialog of dialogs"

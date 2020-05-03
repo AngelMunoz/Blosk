@@ -3,6 +3,7 @@ export interface Storable<T> {
     canSave: boolean;
     lastSave?: Date | string;
     readonly state: Partial<T>;
-    buildSaveState(): Partial<T>;
     saveState(state: Partial<T>): void;
+    buildSaveState(): Partial<T>;
+    saveToStorage(): void;
 }
