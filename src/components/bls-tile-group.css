@@ -1,0 +1,15 @@
+bls-tile-group {
+    padding: 1em;
+}
+
+bls-tile-group::part(header) {
+    font-weight: lighter;
+    padding: 0.5em;
+}
+
+bls-tile-group::part(tiles) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+}

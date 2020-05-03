@@ -1,4 +1,7 @@
 <import from="./bls-tile-group.css"></import>
 <template>
-    ${title}
+    <header part="header">${title}</header>
+    <section part="tiles">
+        <slot></slot>
+    </section>
 </template>

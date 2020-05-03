@@ -10,4 +10,6 @@ bls-desktop::part(unsplash-notice) {
     position: absolute;
     bottom: 5vh;
     right: 10px;
+    background-color: var(--accent-color-less-transparent);
+    border-radius: 5px;
 }

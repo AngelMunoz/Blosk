@@ -14,7 +14,10 @@
     --accent-color: rgb(127, 100, 200);
     --primary-color-transparent: rgba(28, 168, 138, 0.5);
     --accent-color-transparent: rgba(127, 100, 200, 0.5);
+    --primary-color-less-transparent: rgba(73, 89, 82, 0.9);
+    --accent-color-less-transparent: rgba(73, 69, 82, 0.9);
     --window-border-color: var(--accent-color, --primary-color);
+    --window-background-color: var(--accent-color-less-transparent, --primary-color-less-transparent);
     --title-bar-height: 32px;
 }
 

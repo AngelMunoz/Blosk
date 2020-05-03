@@ -8,6 +8,7 @@ bls-dialog {
     border-style: solid;
     border-width: 1px;
     border-color: var(--window-border-color);
+    background-color: var(--window-background-color);
     z-index: 2;
 }
 
