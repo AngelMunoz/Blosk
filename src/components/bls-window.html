@@ -1,4 +1,17 @@
 <import from="./bls-window.css"></import>
-<template class="bls-window">
-    Window
+<template>
+    <header part="header">${title}</header>
+    <section
+        ref="webcomponent"
+        if.bind="window.program.programType === 0"
+    ></section>
+    <section
+        part="content"
+        if.bind="window.program.programType === 1"
+    >
+        <iframe
+            src.bind="window.program.url"
+            frameborder="0"
+        ></iframe>
+    </section>
 </template>
