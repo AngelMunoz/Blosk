@@ -10,15 +10,7 @@ export class BlsDialog {
     @bindable({ mode: BindingMode.toView })
     identity = uuidv4();
 
-    private maxWidth: number;
-    private maxHeight: number;
-
     constructor(private el: Element) { }
-
-    afterAttach() {
-        this.maxWidth = document.body.clientWidth;
-        this.maxHeight = document.querySelector('bls-desktop')?.clientHeight ?? 100;
-    }
 
     close(event: MouseEvent) {
         event.preventDefault();
@@ -32,12 +24,14 @@ export class BlsDialog {
         this.el.dispatchEvent(dispatch);
     }
 
-    dragOver(event: DragEvent) {
+    dragEnd(event: DragEvent) {
         event.preventDefault();
         const target = event.target as HTMLElement;
         const { pageX, pageY } = event;
-        const finalX = pageX > this.maxWidth ? this.maxWidth - 35 : pageX <= 25 ? 25 : pageX;
-        const finalY = pageY > this.maxHeight ? this.maxHeight - 35 : pageY <= 25 ? 25 : pageY;
+        const maxWidth = document.body.clientWidth;
+        const maxHeight = document.querySelector('bls-desktop')?.clientHeight ?? 100;
+        const finalX = pageX > maxWidth ? maxWidth - 35 : pageX <= 25 ? 25 : pageX;
+        const finalY = pageY > maxHeight ? maxHeight - 35 : pageY <= 25 ? 25 : pageY;
         target.style.left = `${finalX}px`;
         target.style.top = `${finalY}px`;
     }
